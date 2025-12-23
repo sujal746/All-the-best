@@ -3,124 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Luck, Sweetu!</title>
+    <title>For My Favorite Student 📖❤️</title>
     <style>
+        :root {
+            --primary: #ff8fa3;
+            --secondary: #ffb3c1;
+            --bg: #fff0f3;
+            --text: #594146;
+        }
+
         body {
+            background-color: var(--bg);
+            font-family: 'Segoe UI', cursive, sans-serif;
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            width: 100%;
+            padding: 15px 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            text-align: center;
+            gap: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
+        nav button {
+            background: none;
+            border: 2px solid var(--primary);
+            padding: 8px 15px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 90%;
-            width: 400px;
-            z-index: 10;
-        }
-
-        h1 { color: #d81b60; margin-bottom: 10px; }
-        p { color: #555; line-height: 1.6; }
-
-        .btn {
-            background: #d81b60;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            color: var(--primary);
             cursor: pointer;
-            font-size: 1rem;
-            margin-top: 20px;
-            transition: transform 0.2s;
-        }
-
-        .btn:hover { transform: scale(1.05); }
-
-        #message-area {
-            margin-top: 20px;
             font-weight: bold;
-            color: #ad1457;
-            min-height: 50px;
+            transition: 0.3s;
         }
 
-        /* Heart Animation */
-        .heart {
+        nav button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            max-width: 500px;
+            width: 90%;
+            margin: 40px auto;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 143, 163, 0.2);
+            border: 2px dashed var(--secondary);
+        }
+
+        h1 { color: var(--primary); font-size: 2em; }
+
+        /* Bubble Wrap Game */
+        .bubble-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .bubble {
+            width: 50px;
+            height: 50px;
+            background: #e0f2fe;
+            border-radius: 50%;
+            border: 2px solid #bae6fd;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .bubble.popped {
+            background: #f1f5f9;
+            border: 1px solid #ddd;
+            transform: scale(0.9);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Floating Hearts */
+        .heart-float {
             position: fixed;
-            top: -10%;
+            bottom: -50px;
             font-size: 20px;
-            color: #ff4081;
-            user-select: none;
-            z-index: 1;
-            animation: fall linear forwards;
+            animation: float Up 4s linear infinite;
         }
 
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
+        @keyframes floatUp {
+            to { transform: translateY(-110vh) rotate(360deg); }
         }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Go Get 'Em, Sweetu! 📝</h1>
-        <p>To my amazing wife: You have worked so hard for this exam. Take a deep breath—you are smarter and stronger than you think!</p>
-        
-        <div id="message-area">Click the button for a surprise boost! 👇</div>
-        
-        <button class="btn" onclick="showSurprise()">Click for Magic</button>
-        
-        <p style="font-size: 0.8rem; margin-top: 30px; color: #888;">
-            I believe in you! ❤️
-        </p>
+<nav>
+    <button onclick="showPage('home')" id="btn-home" class="active">🏠 Welcome</button>
+    <button onclick="showPage('notes')" id="btn-notes">💌 Love Notes</button>
+    <button onclick="showPage('relax')" id="btn-relax">🎈 Stress Buster</button>
+</nav>
+
+<div id="home" class="page active">
+    <div class="card">
+        <h1>Hi Cutie! ✨</h1>
+        <p>I know you're working so hard right now. This is a little space just for you to remind you how amazing you are.</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="Cute Cat" style="width: 100%; border-radius: 15px;">
+        <p>Take a deep breath. You are more than a grade. You are my world!</p>
     </div>
+</div>
 
-    <script>
-        const messages = [
-            "You are a genius! 🧠",
-            "I'm so proud of your hard work! ✨",
-            "Don't stress, just do your best! 🌟",
-            "After the exam, we celebrate! 🍕",
-            "You've got this, Doll! 💪",
-            "Remember: I love you the most! ☕❤️"
-        ];
+<div id="notes" class="page">
+    <div class="card">
+        <h1>Why You'll Crush It...</h1>
+        <ul style="text-align: left; line-height: 2;">
+            <li>🌟 You are incredibly smart.</li>
+            <li>📚 You’ve prepared more than you think.</li>
+            <li>💪 You are resilient and strong.</li>
+            <li>🍕 There's a big treat waiting for you after!</li>
+        </ul>
+        <div style="background: #fff5f6; padding: 15px; border-radius: 10px; margin-top: 20px;">
+            "Believe in yourself as much as I believe in you."
+        </div>
+    </div>
+</div>
 
-        function showSurprise() {
-            // Change message
-            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('message-area').innerText = randomMsg;
+<div id="relax" class="page">
+    <div class="card">
+        <h1>Pop the Stress! 🎈</h1>
+        <p>If you're feeling overwhelmed, pop some virtual bubble wrap!</p>
+        <div class="bubble-grid" id="bubbleGrid"></div>
+        <button onclick="resetBubbles()" style="margin-top: 20px; padding: 10px 20px; border-radius: 20px; border: none; background: var(--primary); color: white;">Reset Bubbles</button>
+    </div>
+</div>
 
-            // Trigger Heart Rain
-            for(let i=0; i<15; i++) {
-                createHeart();
-            }
+<script>
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        // Show selected page
+        document.getElementById(pageId).classList.add('active');
+        // Update nav buttons
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + pageId).classList.add('active');
+    }
+
+    // Create Bubble Wrap
+    const grid = document.getElementById('bubbleGrid');
+    function createBubbles() {
+        grid.innerHTML = '';
+        for (let i = 0; i < 15; i++) {
+            const b = document.createElement('div');
+            b.className = 'bubble';
+            b.onclick = function() { 
+                this.classList.add('popped'); 
+                const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-20.mp3');
+                audio.play();
+            };
+            grid.appendChild(b);
         }
+    }
+    
+    function resetBubbles() { createBubbles(); }
+    createBubbles();
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.opacity = Math.random();
-            document.body.appendChild(heart);
+    // Heart Rain Effect
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-float');
+        heart.innerText = ['💖','💗','✨','🌸'][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 800);
+</script>
 
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-
-        // Auto-create a few hearts on load
-        setInterval(createHeart, 800);
-    </script>
 </body>
 </html>
-
