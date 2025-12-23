@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Luck, Sweetu!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 400px;
+            z-index: 10;
+        }
+
+        h1 { color: #d81b60; margin-bottom: 10px; }
+        p { color: #555; line-height: 1.6; }
+
+        .btn {
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover { transform: scale(1.05); }
+
+        #message-area {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ad1457;
+            min-height: 50px;
+        }
+
+        /* Heart Animation */
+        .heart {
+            position: fixed;
+            top: -10%;
+            font-size: 20px;
+            color: #ff4081;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Go Get 'Em, Sweetu! 📝</h1>
+        <p>To my amazing wife: You have worked so hard for this exam. Take a deep breath—you are smarter and stronger than you think!</p>
+        
+        <div id="message-area">Click the button for a surprise boost! 👇</div>
+        
+        <button class="btn" onclick="showSurprise()">Click for Magic</button>
+        
+        <p style="font-size: 0.8rem; margin-top: 30px; color: #888;">
+            I believe in you! ❤️
+        </p>
+    </div>
+
+    <script>
+        const messages = [
+            "You are a genius! 🧠",
+            "I'm so proud of your hard work! ✨",
+            "Don't stress, just do your best! 🌟",
+            "After the exam, we celebrate! 🍕",
+            "You've got this, Doll! 💪",
+            "Remember: I love you the most! ☕❤️"
+        ];
+
+        function showSurprise() {
+            // Change message
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            document.getElementById('message-area').innerText = randomMsg;
+
+            // Trigger Heart Rain
+            for(let i=0; i<15; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Auto-create a few hearts on load
+        setInterval(createHeart, 800);
+    </script>
+</body>
+</html>
+
